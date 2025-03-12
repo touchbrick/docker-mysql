@@ -25,5 +25,4 @@ volumes:
 
 networks:
   tb-shared-network:
-    name: tb-shared-network
-    driver: bridge 
+    external: true 
