@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mysql-db
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=myodb
+      - MYSQL_USER=touchbrick
+      - MYSQL_PASSWORD=demodatasource
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - tb-shared-network
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  tb-shared-network:
+    name: tb-shared-network
+    driver: bridge 
